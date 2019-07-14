@@ -39,36 +39,34 @@
 
 <a name="md002"></a>
 
-## MD002 - First heading should be a top level heading
+## MD002 - 第一个标题应当是一级标题
 
-Tags: headings, headers
+标签：标题
 
-Aliases: first-heading-h1, first-header-h1
+别名：首标题-h1
 
-Parameters: level (number; default 1)
+参数: level (number; 默认为1)
 
-> Note: *MD002 has been deprecated and is disabled by default.*
-> [MD041/first-line-heading](#md041) offers an improved implementation.
+> 注意: *MD002现已被弃用并默认关闭。*
+> [MD041/首行标题](#md041) 提供了一个改进实现.
 
-This rule is intended to ensure document headings start at the top level and
-is triggered when the first heading in the document isn't an h1 heading:
-
-```markdown
-## This isn't an H1 heading
-
-### Another heading
-```
-
-The first heading in the document should be an h1 heading:
+该规则旨在确保文档以一级标题为开始，并当文档的第一个标题不是h1标题时被触发：
 
 ```markdown
-# Start with an H1 heading
+## 这不是一个H1标题
 
-## Then use an H2 for subsections
+### 另一个标题
 ```
 
-Note: The `level` parameter can be used to change the top level (ex: to h2) in
-cases where an h1 is added externally.
+文档中的第一个标题应该是一个h1标题：
+
+```markdown
+# 以一个H1标题开始
+
+## 然后为分段使用一个H2标题
+```
+
+注意：`level`参数可以用来改变首级标题（例：更改为h2），以防止h1在外边被添加。
 
 <a name="md003"></a>
 
