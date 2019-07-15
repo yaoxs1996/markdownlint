@@ -70,51 +70,47 @@
 
 <a name="md003"></a>
 
-## MD003 - Heading style
+## MD003 - 标题样式
 
-Tags: headings, headers
+标签：标题
 
-Aliases: heading-style, header-style
+别名：标题样式
 
-Parameters: style ("consistent", "atx", "atx_closed", "setext",
+参数：style ("consistent", "atx", "atx_closed", "setext",
 "setext_with_atx", "setext_with_atx_closed"; default "consistent")
 
-This rule is triggered when different heading styles (atx, setext, and 'closed'
-atx) are used in the same document:
+当在同一个文档中，使用不同的标题样式（atx，setext，以及‘closed’ atx）会触发该规则：
 
 ```markdown
-# ATX style H1
+# ATX样式的H1标题
 
-## Closed ATX style H2 ##
+## Closed ATX样式的H2标题 ##
 
-Setext style H1
+Setext样式的H1标题
 ===============
 ```
 
-Be consistent with the style of heading used in a document:
+在同一个文档中，使用一致的标题样式：
 
 ```markdown
-# ATX style H1
+# ATX样式的H1标题
 
-## ATX style H2
+## ATX样式的H2标题
 ```
 
-The setext_with_atx and setext_with_atx_closed doc styles allow atx-style
-headings of level 3 or more in documents with setext style headings:
+setext_with_atx和setext_with_atx_closed文档样式允许在文档中使用带有setext样式标题的atx-style的3级标题或者更多的标题：
 
 ```markdown
-Setext style H1
+Setext样式的H1标题
 ===============
 
-Setext style H2
+Setext样式的H2标题
 ---------------
 
-### ATX style H3
+### ATX样式的H3标题
 ```
 
-Note: the configured heading style can be a specific style to use (atx,
-atx_closed, setext, setext_with_atx, setext_with_atx_closed), or simply require
-that the usage be consistent within the document.
+注意：配置标题样式可以使用某个特定的样式（atx，atx_closed，setext，setext_with_atx，setext_with_atx_closed），或者简单地要求在一个文档内使用一致的样式。
 
 <a name="md004"></a>
 
