@@ -24,17 +24,17 @@
 当我们使用多级标题的时候，嵌套的标题应当每次逐级增加：
 
 ```markdown
-# Heading 1
+# 标题1
 
-## Heading 2
+## 标题2
 
-### Heading 3
+### 标题3
 
-#### Heading 4
+#### 标题4
 
-## Another Heading 2
+## 另一个标题2
 
-### Another Heading 3
+### 另一个标题3
 ```
 
 <a name="md002"></a>
@@ -114,47 +114,42 @@ Setext样式的H2标题
 
 <a name="md004"></a>
 
-## MD004 - Unordered list style
+## MD004 - 无序列表样式
 
-Tags: bullet, ul
+标签：项目符号，无序列表
 
-Aliases: ul-style
+别名：ul-style
 
-Parameters: style ("consistent", "asterisk", "plus", "dash", "sublist"; default
+参数：style ("consistent", "asterisk", "plus", "dash", "sublist"; default
 "consistent")
 
-This rule is triggered when the symbols used in the document for unordered
-list items do not match the configured unordered list style:
+在文档中，当无序列表项目使用的符号与配置的无序列表样式不符时触发该条规则：
 
 ```markdown
-* Item 1
-+ Item 2
-- Item 3
+* 项目1
++ 项目2
+- 项目3
 ```
 
-To fix this issue, use the configured style for list items throughout the
-document:
+通过在文档中使用已配置的列表项样式修复本问题：
 
 ```markdown
-* Item 1
-* Item 2
-* Item 3
+* 项目1
+* 项目2
+* 项目3
 ```
 
-The configured list style can be a specific symbol to use (asterisk, plus, dash),
-can require that usage be consistent within the document, or can require that each
-sublist have a consistent symbol that is different from its parent list.
+列表项的配置样式可以使用一种特定的符号（星号，加号，破折号），可以要求在文档中使用一致的符号，或者子列表内部使用一致的，且与其父列表不同符号：
 
-For example, the following is valid for the `sublist` style because the outer-most
-indent uses asterisk, the middle indent uses plus, and the inner-most indent uses dash:
+例如，下面子列表使用的样式就是有效的，因为最外侧缩进的项使用星号，中间缩进的项目使用加号，以及最内侧的项目使用破折号：
 
 ```markdown
-* Item 1
-  + Item 2
-    - Item 3
-  + Item 4
-* Item 4
-  + Item 5
+* 项目1
+  + 项目2
+    - 项目3
+  + 项目4
+* 项目4
+  + 项目5
 ```
 
 <a name="md005"></a>
