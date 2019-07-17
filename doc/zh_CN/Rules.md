@@ -154,99 +154,87 @@ Setext样式的H2标题
 
 <a name="md005"></a>
 
-## MD005 - Inconsistent indentation for list items at the same level
+## MD005 - 同级列表项中的不一致缩进
 
-Tags: bullet, ul, indentation
+标签：列表项目，无序列表，缩进
 
-Aliases: list-indent
+别名：列表缩进
 
-This rule is triggered when list items are parsed as being at the same level,
-but don't have the same indentation:
-
-```markdown
-* Item 1
-  * Nested Item 1
-  * Nested Item 2
-   * A misaligned item
-```
-
-Usually this rule will be triggered because of a typo. Correct the indentation
-for the list to fix it:
+当列表项被解析为同一级，但没有使用一致的缩进时，触发该规则：
 
 ```markdown
-* Item 1
-  * Nested Item 1
-  * Nested Item 2
-  * Nested Item 3
+* 项目1
+  * 嵌套的项目1
+  * 嵌套的项目2
+   * 一个编排不整齐的项目
 ```
 
-Sequentially-ordered list markers are usually left-aligned such that all items
-have the same starting column:
+通常该规则由于打字错误被触发。修正列表的缩进以解决该问题：
+
+```markdown
+* 项目1
+  * 嵌套的项目1
+  * 嵌套的项目2
+  * 嵌套的项目3
+```
+
+顺序列表的标记通常是左对齐，使得所有的项目是相同的起始列：
 
 ```markdown
 ...
-8. Item
-9. Item
-10. Item
-11. Item
+8. 项目
+9. 项目
+10. 项目
+11. 项目
 ...
 ```
 
-This rule also supports right-alignment of list markers such that all items have
-the same ending column:
+本规则也支持列表符号的右对齐，使得所有的项目是相同的列结束：
 
 ```markdown
 ...
- 8. Item
- 9. Item
-10. Item
-11. Item
+ 8. 项目
+ 9. 项目
+10. 项目
+11. 项目
 ...
 ```
 
 <a name="md006"></a>
 
-## MD006 - Consider starting bulleted lists at the beginning of the line
+## MD006 - 考虑将无序列表的起始位置放在行首
 
-Tags: bullet, ul, indentation
+标签：着重号，无序列表，缩进
 
-Aliases: ul-start-left
+别名：无序列表起始于左侧
 
-This rule is triggered when top level lists don't start at the beginning of a
-line:
+当顶级列表没有以行首为开始时触发该规则：
 
 ```markdown
-Some text
+一些文本
 
-  * List item
-  * List item
+  * 列表项
+  * 列表项
 ```
 
-To fix, ensure that top level list items are not indented:
+修复该问题，确保顶级列表项目没有缩进：
 
 ```markdown
-Some test
+一些文本
 
-* List item
-* List item
+* 列表项目
+* 列表项目
 ```
 
-Rationale: Starting lists at the beginning of the line means that nested list
-items can all be indented by the same amount when an editor's indent function
-or the tab key is used to indent. Starting a list 1 space in means that the
-indent of the first nested list is less than the indent of the second level (3
-characters if you use 4 space tabs, or 1 character if you use 2 space tabs).
+原理：在行首起始一个列表意味着当使用编辑器的缩进函数或者tab键缩进时，嵌套的列表项目可以缩进相同的数目。一个列表的起始缩进一个空格意味着第一个嵌套的列表的缩进少于第二级的列表（当使用4空格的tabs时是3个字符，或者使用2空格tabs时是1个空格）。
 
-Note: This rule is triggered for the following scenario because the unordered
-sublist is not recognized as such by the parser. Not being nested 3 characters
-as required by the outer ordered list, it creates a top-level unordered list
-instead.
+注意：该规则也会在下面的场景被触发，因为无序子列表无法被解析器识别。外边的有序列表也要求不要嵌套3个字符，它反而创建了一个顶级的无序列表。
 
 ```markdown
-1. List item
-  - List item
-  - List item
-1. List item
+1. 列表项
+  - 列表项
+  - 列表项
+1. 列表项
 ```
 
 <a name="md007"></a>
