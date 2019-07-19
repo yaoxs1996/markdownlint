@@ -239,77 +239,60 @@ Setext样式的H2标题
 
 <a name="md007"></a>
 
-## MD007 - Unordered list indentation
+## MD007 - 无序列表缩进
 
-Tags: bullet, ul, indentation
+标签：着重号，无序列表，缩进
 
-Aliases: ul-indent
+别名：ul-indent
 
-Parameters: indent (number; default 2)
+参数：indent (number; 默认为2)
 
-This rule is triggered when list items are not indented by the configured
-number of spaces (default: 2).
+当列表项没有按照配置的空格数（默认为2）进行缩进时触发该规则。
 
-Example:
-
-```markdown
-* List item
-   * Nested list item indented by 3 spaces
-```
-
-Corrected Example:
+例如：
 
 ```markdown
-* List item
-  * Nested list item indented by 2 spaces
+* 列表项
+   * 嵌套列表项缩进了3个空格
 ```
 
-Rationale (2 space indent): indenting by 2 spaces allows the content of a
-nested list to be in line with the start of the content of the parent list
-when a single space is used after the list marker.
+修正后的例子：
 
-Rationale (4 space indent): Same indent as code blocks, simpler for editors to
-implement. See
-<https://www.cirosantilli.com/markdown-style-guide/#indentation-of-content-inside-lists> for more
-information.
+```markdown
+* 列表项
+  * 嵌套列表项缩进了3个空格
+```
 
-In addition, this is a compatibility issue with multi-markdown parsers, which
-require a 4 space indents. See
-<http://support.markedapp.com/discussions/problems/21-sub-lists-not-indenting>
-for a description of the problem.
+原理（2空格缩进）：当在列表符号后使用单个空格时，使用2个空格的缩进能够允许嵌套列表的内容与父列表内容的开始保持一致。
 
-Note: This rule applies to a sublist only if its parent lists are all also
-unordered (otherwise, extra indentation of ordered lists interferes with the
-rule).
+原理（4空格缩进）：诸如code block是中使用这样的缩进，编辑器更易实现。参见<https://www.cirosantilli.com/markdown-style-guide/#indentation-of-content-inside-lists>获得更多信息。
+
+此外，要求4空格缩进是一个多种markdown解析器之间的兼容问题。参见<http://support.markedapp.com/discussions/problems/21-sub-lists-not-indenting>获得问题描述。
+
+注意：本规则只有在父列表全部是无序时才会应用到子列表（否则，有序列表的额外缩进会与该规则冲突）。
 
 <a name="md009"></a>
 
-## MD009 - Trailing spaces
+## MD009 - 后续空格
 
-Tags: whitespace
+标签：空格
 
-Aliases: no-trailing-spaces
+别名：禁止后续空格
 
-Parameters: br_spaces, list_item_empty_lines (number; default 2, boolean; default false)
+参数：br_spaces, list_item_empty_lines (number; 默认为2, boolean; 默认为false)
 
-This rule is triggered on any lines that end with unexpected whitespace. To fix this,
-remove the trailing space from the end of the line.
+当任何行以一场的空格结束时，触发该规则。从行尾删除后续的空格以修复该问题。
 
-The `br_spaces` parameter allows an exception to this rule for a specific number
-of trailing spaces, typically used to insert an explicit line break. The default
-value allows 2 spaces to indicate a hard break (\<br> element).
+参数`br_spaces`允许在为该规则设置例外的特定数目的后续空格，典型的是用于插入一个明确的换行标志。默认参数使用2个空格表示一个硬换行（\<br>元素）。
 
-Note: You must set `br_spaces` to a value >= 2 for this parameter to take effect.
-Setting `br_spaces` to 1 behaves the same as 0, disallowing any trailing spaces.
+注意：你必须将`br_spaces`的值设置为>=2使得该参数生效。将`br_spaces`设置为1时变现与0相同，即禁止任何的后续空格。
 
-Using spaces to indent blank lines inside a list item is usually not necessary,
-but some parsers require it. Set the `list_item_empty_lines` parameter to `true`
-to allow this:
+在一个列表项中使用空格编排一个空白行通常是不必要的，但是一些解析器需要这样做。将参数`list_item_empty_lines`设置为`true`允许这样的情况：
 
 ```markdown
-- list item text
-  [2 spaces]
-  list item text
+- 列表项文本
+  [2个空格]
+  列表项文本
 ```
 
 <a name="md010"></a>
