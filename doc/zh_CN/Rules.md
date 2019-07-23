@@ -297,61 +297,55 @@ Setext样式的H2标题
 
 <a name="md010"></a>
 
-## MD010 - Hard tabs
+## MD010 - 硬tabs
 
-Tags: whitespace, hard_tab
+标签：空格，硬tabs
 
-Aliases: no-hard-tabs
+别名：禁止硬tabs
 
-Parameters: code_blocks (boolean; default true)
+参数：code_blocks (boolean; 默认为true)
 
-This rule is triggered by any lines that contain hard tab characters instead
-of using spaces for indentation. To fix this, replace any hard tab characters
-with spaces instead.
+当任一行使用硬tabs字符而不是空格进行缩进时，会触发该规则。使用空格来替换硬tabs字符以修复该问题。
 
-Example:
+例如：
 
 ```markdown
-Some text
+一些文本
 
-	* hard tab character used to indent the list item
+	* 对列表项使用硬tabs字符进行缩进
 ```
 
-Corrected example:
+修正后的例子：
 
 ```markdown
-Some text
+一些文本
 
-    * Spaces used to indent the list item instead
+    * 使用空格对列表项进行缩进
 ```
 
-You have the option to exclude this rule for code blocks. To do so, set the
-`code_blocks` parameter to `false`. Code blocks are included by default since
-handling of tabs by tools is often inconsistent (ex: using 4 vs. 8 spaces).
+你可以选择为代码块排除这条规则。将`code_blocks`参数设置为`false`以实现目的。代码块默认被包括在内，因为工具对tabs的处理经常是不一致的（例：使用4空格 vs. 使用8空格）。
 
 <a name="md011"></a>
 
-## MD011 - Reversed link syntax
+## MD011 - 链接语法颠倒
 
-Tags: links
+标签：链接
 
-Aliases: no-reversed-links
+别名：禁止颠倒链接
 
-This rule is triggered when text that appears to be a link is encountered, but
-where the syntax appears to have been reversed (the `[]` and `()` are
-reversed):
+在文本中使用了链接，但是语法看起来被颠倒了（`[]`和`()`的顺序颠倒了），就会触发这条规则：
 
 ```markdown
-(Incorrect link syntax)[https://www.example.com/]
+(不正确的链接语法)[https://www.example.com/]
 ```
 
-To fix this, swap the `[]` and `()` around:
+修复这个问题，交换`[]`和`()`的顺序：
 
 ```markdown
-[Correct link syntax](https://www.example.com/)
+[正确的链接语法](https://www.example.com/)
 ```
 
-Note: [Markdown Extra](https://en.wikipedia.org/wiki/Markdown_Extra)-style footnotes do not trigger this rule:
+注意：[Markdown Extra](https://en.wikipedia.org/wiki/Markdown_Extra)-样式的脚注不会触发该规则：
 
 ```markdown
 For (example)[^1]
