@@ -353,77 +353,70 @@ For (example)[^1]
 
 <a name="md012"></a>
 
-## MD012 - Multiple consecutive blank lines
+## MD012 - 多个连续空白行
 
-Tags: whitespace, blank_lines
+标签：空格，空白行
 
-Aliases: no-multiple-blanks
+别名：禁止多个空白行
 
-Parameters: maximum (number; default 1)
+参数：maximum (number; 默认1)
 
-This rule is triggered when there are multiple consecutive blank lines in the
-document:
-
-```markdown
-Some text here
-
-
-Some more text here
-```
-
-To fix this, delete the offending lines:
+当文档中有连续的多个空白行会触发这个规则：
 
 ```markdown
-Some text here
+这里是一些文本
 
-Some more text here
+
+这里是一些更多的文本
 ```
 
-Note: this rule will not be triggered if there are multiple consecutive blank
-lines inside code blocks.
+删除非法的行以修正该问题：
 
-Note: The `maximum` parameter can be used to configure the maximum number of
-consecutive blank lines.
+```markdown
+这里是一些文本
+
+这里是一些更多的文本
+```
+
+注意：代码块中存在的连续空白行不会触发这条规则。
+
+注意：参数`maximum`能够用来配置连续空白行的最大数目。
 
 <a name="md013"></a>
 
-## MD013 - Line length
+## MD013 - 行长度
 
-Tags: line_length
+标签：line_length
 
-Aliases: line-length
+别名：line-length
 
-Parameters: line_length, heading_line_length, code_block_line_length, code_blocks, tables, headings, headers (number; default 80, boolean; default true)
+参数：line_length, heading_line_length, code_block_line_length, code_blocks, tables, headings, headers (number; 默认80, boolean; 默认true)
 
-> If `headings` is not provided, `headers` (deprecated) will be used.
+> 如果没有提供`headings`，则会使用`headers`（已弃用）。
 
-This rule is triggered when there are lines that are longer than the
-configured `line_length` (default: 80 characters). To fix this, split the line
-up into multiple lines. To set a different maximum length for headings, use
-`heading_line_length`. To set a different maximum length for code blocks, use
-`code_block_line_length`
+当有行的长度超出配置的`line_length`参数（默认：80字符）会触发该规则。
+将一行分割成多行以修正该问题。
+使用`heading_line_length`参数为标题设置不同的最大长度。
+使用`code_block_line_length`参数为代码块设置不同的最大长度。
 
-This rule has an exception where there is no whitespace beyond the configured
-line length. This allows you to still include items such as long URLs without
-being forced to break them in the middle.
+当某行没有空格且超出了配置的行的长度，这种情况是该规则的一个例外。
+这使你不需要对诸如长URLs等项目进行从中间进行换行。
 
-You have the option to exclude this rule for code blocks, tables, or headings.
-To do so, set the `code_blocks`, `tables`, or `headings` parameter(s) to false.
+你可以选择将代码块、表格或者标题排除在该规则之外。
+将`code_blocks`、`tables`或`headings`参数设置为false以实现。
 
-Code blocks are included in this rule by default since it is often a
-requirement for document readability, and tentatively compatible with code
-rules. Still, some languages do not lend themselves to short lines.
+代码块默认被包含在该规则中，因为这通常是文档可读性的要求，暂时与代码规则相兼容。
+然而一些语言并不合适于短行。
 
 <a name="md014"></a>
 
-## MD014 - Dollar signs used before commands without showing output
+## MD014 - 没有显示输出而在命令前使用美元符号
 
-Tags: code
+标签：code
 
-Aliases: commands-show-output
+别名：commands-show-output
 
-This rule is triggered when there are code blocks showing shell commands to be
-typed, and the shell commands are preceded by dollar signs ($):
+当在代码块中展示输入的shell命令，并且shell命令被美元符号（$）引领着，会触发该规则：
 
 ```markdown
 $ ls
@@ -431,8 +424,7 @@ $ cat foo
 $ less bar
 ```
 
-The dollar signs are unnecessary in the above situation, and should not be
-included:
+上述情况的美元符号不是必要的，应当不被包含：
 
 ```markdown
 ls
@@ -440,8 +432,7 @@ cat foo
 less bar
 ```
 
-However, an exception is made when there is a need to distinguish between
-typed commands and command output, as in the following example:
+然而，当需要区分输入的命令与命令的输出时，是一个例外的情况，如下面的例子：
 
 ```markdown
 $ ls
@@ -452,10 +443,8 @@ $ cat bar
 baz
 ```
 
-Rationale: it is easier to copy and paste and less noisy if the dollar signs
-are omitted when they are not needed. See
-<https://www.cirosantilli.com/markdown-style-guide/#dollar-signs-in-shell-code>
-for more information.
+原理：当美元符号不必要时被忽略，可以更易复制粘贴以及阅读。
+参见<https://www.cirosantilli.com/markdown-style-guide/#dollar-signs-in-shell-code>获得更多信息。
 
 <a name="md018"></a>
 
