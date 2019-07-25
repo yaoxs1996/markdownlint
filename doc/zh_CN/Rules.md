@@ -448,112 +448,103 @@ baz
 
 <a name="md018"></a>
 
-## MD018 - No space after hash on atx style heading
+## MD018 - 在atx风格的标题中hash之后没有空格
 
-Tags: headings, headers, atx, spaces
+标签：headings, headers, atx, spaces
 
-Aliases: no-missing-space-atx
+别名：no-missing-space-atx
 
-This rule is triggered when spaces are missing after the hash characters
-in an atx style heading:
+在atx风格的标题中，当hash字符后缺少空格时会触发这条规则：
 
 ```markdown
-#Heading 1
+#标题1
 
-##Heading 2
+##标题2
 ```
 
-To fix this, separate the heading text from the hash character by a single
-space:
+使用单空格将标题文本与hash字符分离以修正该问题：
 
 ```markdown
-# Heading 1
+# 标题1
 
-## Heading 2
+## 标题2
 ```
 
 <a name="md019"></a>
 
-## MD019 - Multiple spaces after hash on atx style heading
+## MD019 - 在atx风格的标题中的hash后使用了多个空格
 
-Tags: headings, headers, atx, spaces
+标签：headings, headers, atx, spaces
 
-Aliases: no-multiple-space-atx
+别名：no-multiple-space-atx
 
-This rule is triggered when more than one space is used to separate the
-heading text from the hash characters in an atx style heading:
+在atx风格的标题中，使用多个空格去分割标题文本和hash字符时会触发这条规则：
 
 ```markdown
-#  Heading 1
+#  标题1
 
-##  Heading 2
+##  标题2
 ```
 
-To fix this, separate the heading text from the hash character by a single
-space:
+用一个空格来分割标题文本和hash字符以修正该问题：
 
 ```markdown
-# Heading 1
+# 标题1
 
-## Heading 2
+## 标题2
 ```
 
 <a name="md020"></a>
 
-## MD020 - No space inside hashes on closed atx style heading
+## MD020 - 闭合atx风格标题hashes内没有空格
 
-Tags: headings, headers, atx_closed, spaces
+标签：headings, headers, atx_closed, spaces
 
-Aliases: no-missing-space-closed-atx
+别名：no-missing-space-closed-atx
 
-This rule is triggered when spaces are missing inside the hash characters
-in a closed atx style heading:
-
-```markdown
-#Heading 1#
-
-##Heading 2##
-```
-
-To fix this, separate the heading text from the hash character by a single
-space:
+当闭合atx风格标题内的hashes缺失了空格时会触发这条规则：
 
 ```markdown
-# Heading 1 #
+#标题1#
 
-## Heading 2 ##
+##标题2##
 ```
 
-Note: this rule will fire if either side of the heading is missing spaces.
+使用一个空格来分隔标题文本与hash字符以修正该问题：
+
+```markdown
+# 标题1 #
+
+## 标题2 ##
+```
+
+注意：标题的任何一边缺失空格都会触发该规则。
 
 <a name="md021"></a>
 
-## MD021 - Multiple spaces inside hashes on closed atx style heading
+## MD021 - 闭合atx风格标题hashes内有多个空格
 
-Tags: headings, headers, atx_closed, spaces
+标签：headings, headers, atx_closed, spaces
 
-Aliases: no-multiple-space-closed-atx
+别名：no-multiple-space-closed-atx
 
-This rule is triggered when more than one space is used to separate the
-heading text from the hash characters in a closed atx style heading:
-
-```markdown
-#  Heading 1  #
-
-##  Heading 2  ##
-```
-
-To fix this, separate the heading text from the hash character by a single
-space:
+当闭合atx风格的标题中使用了多个空格来分隔标题文本与hash字符时会触发这条规则：
 
 ```markdown
-# Heading 1 #
+#  标题1  #
 
-## Heading 2 ##
+##  标题2  ##
 ```
 
-Note: this rule will fire if either side of the heading contains multiple
-spaces.
+使用单个空格来分隔标题文本与hash字符以修复这个问题：
+
+```markdown
+# 标题1 #
+
+## 标题2 ##
+```
+
+注意：标题的任何一边包含多个空格都会触发该规则。
 
 <a name="md022"></a>
 
