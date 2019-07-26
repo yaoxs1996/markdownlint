@@ -548,112 +548,103 @@ baz
 
 <a name="md022"></a>
 
-## MD022 - Headings should be surrounded by blank lines
+## MD022 - 标题应当被空行包围
 
-Tags: headings, headers, blank_lines
+标签：headings, headers, blank_lines
 
-Aliases: blanks-around-headings, blanks-around-headers
+别名：blanks-around-headings, blanks-around-headers
 
-Parameters: lines_above, lines_below (number; default 1)
+参数：lines_above, lines_below (number; 默认1)
 
-This rule is triggered when headings (any style) are either not preceded or not
-followed by at least one blank line:
-
-```markdown
-# Heading 1
-Some text
-
-Some more text
-## Heading 2
-```
-
-To fix this, ensure that all headings have a blank line both before and after
-(except where the heading is at the beginning or end of the document):
+当标题行（任何样式）的前一行或者后一行没有至少一个空行时触发该规则：
 
 ```markdown
-# Heading 1
+# 标题1
+一些文本
 
-Some text
-
-Some more text
-
-## Heading 2
+一些更多的文本
+## 标题2
 ```
 
-Rationale: Aside from aesthetic reasons, some parsers, including kramdown, will
-not parse headings that don't have a blank line before, and will parse them as
-regular text.
+确保标题的前面和后面都有一个空行（除非标题位于文档的开始处或者结束处）以修正该问题：
 
-The `lines_above` and `lines_below` parameters can be used to specify a different
-number of blank lines (including 0) above or below each heading.
+```markdown
+# 标题1
 
-Note: If `lines_above` or `lines_below` are configured to require more than one
-blank line, [MD012/no-multiple-blanks](#md012) should also be customized.
+一些文本
+
+一些更多的文本
+
+## 标题2
+```
+
+原理：除去一些审美的原因外，一些解析器，包括kramdown，如果标题后没有空行会无法被解析，并且会被解析成常规文本。
+
+参数`lines_above`和`lines_below`可以用来指定标题行前和行后的空行数目（包括0）。
+
+注意：如果参数`lines_above`或`lines_below`被修改成需要多于一个空行时，
+[MD012/no-multiple-blanks](#md012)也应当被修改。
 
 <a name="md023"></a>
 
-## MD023 - Headings must start at the beginning of the line
+## MD023 - 标题应当在行首开始
 
-Tags: headings, headers, spaces
+标签：headings, headers, spaces
 
-Aliases: heading-start-left, header-start-left
+别名：heading-start-left, header-start-left
 
-This rule is triggered when a heading is indented by one or more spaces:
-
-```markdown
-Some text
-
-  # Indented heading
-```
-
-To fix this, ensure that all headings start at the beginning of the line:
+当标题被一个或多个空格进行缩进时会触发该规则：
 
 ```markdown
-Some text
+一些文本
 
-# Heading
+  # 缩进的标题
 ```
 
-Rationale: Headings that don't start at the beginning of the line will not be
-parsed as headings, and will instead appear as regular text.
+确保所有的标题都在行首开始以修正该问题：
+
+```markdown
+一些文本
+
+# 标题
+```
+
+原理：标题不在行首开始会使得其无法被解析为标题，并且反而会被识别为普通文本。
 
 <a name="md024"></a>
 
-## MD024 - Multiple headings with the same content
+## MD024 - 多个标题有相同内容
 
-Tags: headings, headers
+标签：headings, headers
 
-Aliases: no-duplicate-heading, no-duplicate-header
+别名：no-duplicate-heading, no-duplicate-header
 
-Parameters: siblings_only, allow_different_nesting (boolean; default `false`)
+参数：siblings_only, allow_different_nesting (boolean; 默认`false`)
 
-This rule is triggered if there are multiple headings in the document that have
-the same text:
+当文档中多个标题的文本内容一样时会触发该规则：
 
 ```markdown
-# Some text
+# 一些文本
 
-## Some text
+## 一些文本
 ```
 
-To fix this, ensure that the content of each heading is different:
+确保每个标题的内容不一样以修正该问题：
 
 ```markdown
-# Some text
+# 一些文本
 
-## Some more text
+## 一些更多的文本
 ```
 
-Rationale: Some markdown parses generate anchors for headings based on the
-heading name, and having headings with the same content can cause problems with
-this.
+原理：一些markdown解析器基于标题名为标题生成锚点，
+标题拥有相同的内容会因此造成一些问题。
 
-If the parameter `siblings_only` (alternatively `allow_different_nesting`) is
-set to `true`, heading duplication is allowed for non-sibling headings (common
-in change logs):
+如果参数`siblings_only`（或者`allow_different_nesting`）设置为`true`，
+就允许非同胞标题使用相同标题（通常在修改日志中使用）：
 
 ```markdown
-# Change log
+# 修改日志
 
 ## 1.0.0
 
@@ -666,50 +657,42 @@ in change logs):
 
 <a name="md025"></a>
 
-## MD025 - Multiple top level headings in the same document
+## MD025 - 同一个文档中有多个顶级标题
 
-Tags: headings, headers
+标签：headings, headers
 
-Aliases: single-title, single-h1
+别名：single-title, single-h1
 
-Parameters: level, front_matter_title (number; default 1, string; default "^\s*title:")
+参数：level, front_matter_title (number; 默认 1, string; 默认 "^\s*title:")
 
-This rule is triggered when a top level heading is in use (the first line of
-the file is an h1 heading), and more than one h1 heading is in use in the
-document:
-
-```markdown
-# Top level heading
-
-# Another top level heading
-```
-
-To fix, structure your document so that there is a single h1 heading that is
-the title for the document, and all later headings are h2 or lower level
-headings:
+当一个顶级标题在使用中（文件的第一行是一个h1标题），并且文档中还有更多的h1标题时，
+会触发这条规则:
 
 ```markdown
-# Title
+# 顶级标题
 
-## Heading
-
-## Another heading
+# 另一个顶级标题
 ```
 
-Rationale: A top level heading is an h1 on the first line of the file, and
-serves as the title for the document. If this convention is in use, then there
-can not be more than one title for the document, and the entire document
-should be contained within this heading.
+组织你的文档以使得文档只有一个h1标题作为题目，后面的标题使用h2级或者更低级的标题，以修正该问题：
 
-Note: The `level` parameter can be used to change the top level (ex: to h2) in
-cases where an h1 is added externally.
+```markdown
+# 题目
 
-If [YAML](https://en.wikipedia.org/wiki/YAML) front matter is present and contains
-a `title` property (commonly used with blog posts), this rule treats that as a top
-level heading and will report a violation for any subsequent top level headings.
-To use a different property name in front matter, specify the text of a regular
-expression via the `front_matter_title` parameter. To disable the use of front
-matter by this rule, specify `""` for `front_matter_title`.
+## 标题
+
+## 另一个标题
+```
+
+原理：顶级标题是文件的第一行的h1标题，并被作为文档的题目。
+如果这个惯例被使用，文档中就不能有多个题目，整个文档应该被这个标题所包含。
+
+注意：参数`level`可以被用来修改顶级标题（例如：修改为h2）以防止h1在外部被添加。
+
+如果[YAML](https://en.wikipedia.org/wiki/YAML)前面包含一个`title`属性（通常使用在博客中）而面临问题，
+这条规则会将其视为顶级标题并会对其后的顶级标题报出警告。
+在前面使用不同属性名，使用属性`front_matter_title`修改正则表达式文本。
+将`front_matter_title`修改为`""`以关闭该规则。
 
 <a name="md026"></a>
 
