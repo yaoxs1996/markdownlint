@@ -696,154 +696,145 @@ baz
 
 <a name="md026"></a>
 
-## MD026 - Trailing punctuation in heading
+## MD026 - 标题后续的标点符号
 
-Tags: headings, headers
+标签：headings, headers
 
-Aliases: no-trailing-punctuation
+别名：no-trailing-punctuation
 
-Parameters: punctuation (string; default ".,;:!?。，；：！？")
+参数：punctuation (string; 默认 ".,;:!?。，；：！？")
 
-This rule is triggered on any heading that has a normal or full-width punctuation
-character as the last character in the line:
+任何标题所在行的最后一个字符是一个普通或者全角字符时触发该规则：
 
 ```markdown
 # This is a heading.
 ```
 
-To fix this, remove any trailing punctuation:
+移除最后的任何标点符号以修正该问题：
 
 ```markdown
 # This is a heading
 ```
 
-Note: The punctuation parameter can be used to specify what characters class
-as punctuation at the end of the heading. For example, you can set it to
-`".,;:!"` to allow headings with question marks in them, such as might be used
-in an FAQ.
+注意：标点参数可以用来修改哪些字符在标题的末尾可以被分为标点符号。
+例如，你可以将该参数设置为`".,;:!"`以允许标题中使用问号，比如在FAQ中使用。
 
 <a name="md027"></a>
 
-## MD027 - Multiple spaces after blockquote symbol
+## MD027 - 块引用符号后有多个空格
 
-Tags: blockquote, whitespace, indentation
+标签：blockquote, whitespace, indentation
 
-Aliases: no-multiple-space-blockquote
+别名：no-multiple-space-blockquote
 
-This rule is triggered when blockquotes have more than one space after the
-blockquote (`>`) symbol:
+当块引用中的引用符号（`>`）后有不止一个空格时触发该规则：
 
 ```markdown
->  This is a block quote with bad indentation
->  there should only be one.
+>  这是一个错误不好的块引用缩进
+>  应当只有一个空格。
 ```
 
-To fix, remove any extraneous space:
+移除多余的空格以修正该问题：
 
 ```markdown
-> This is a blockquote with correct
-> indentation.
+> 这是正确的块引用
+> 缩进。
 ```
 
 <a name="md028"></a>
 
-## MD028 - Blank line inside blockquote
+## MD028 - 块引用内的空行
 
-Tags: blockquote, whitespace
+标签：blockquote, whitespace
 
-Aliases: no-blanks-blockquote
+别名：no-blanks-blockquote
 
-This rule is triggered when two blockquote blocks are separated by nothing
-except for a blank line:
+当两个引用块仅被一个空行分隔时触发该规则：
 
 ```markdown
-> This is a blockquote
-> which is immediately followed by
+> 这是一个块引用
+> 其后跟随着
 
-> this blockquote. Unfortunately
-> In some parsers, these are treated as the same blockquote.
+> 这个块引用。可惜
+> 在一些解析器中，它们会被视为同一个引用块。
 ```
 
-To fix this, ensure that any blockquotes that are right next to each other
-have some text in between:
+确保任何相邻的块引用中间有一些文本，以修正该问题：
+
 
 ```markdown
-> This is a blockquote.
+> 这是一个块引用。
 
-And Jimmy also said:
+并且Jimmy也说：
 
-> This too is a blockquote.
+> 这也是一个块引用。
 ```
 
-Alternatively, if they are supposed to be the same quote, then add the
-blockquote symbol at the beginning of the blank line:
+或者，如果它们应该是同一个引用块，在空行的开始加上一个引用符号：
 
 ```markdown
-> This is a blockquote.
+> 这是一个块引用。
 >
-> This is the same blockquote.
+> 这是同一个块引用。
 ```
 
-Rationale: Some markdown parsers will treat two blockquotes separated by one
-or more blank lines as the same blockquote, while others will treat them as
-separate blockquotes.
+原理：一些markdown解析器会将被一个或多个空行分隔的两个块引用视为同一个引用块，
+而另一些将它们视为不同的引用块。
 
 <a name="md029"></a>
 
-## MD029 - Ordered list item prefix
+## MD029 - 有序列表项前缀
 
-Tags: ol
+标签：ol
 
-Aliases: ol-prefix
+别名：ol-prefix
 
-Parameters: style ("one", "ordered", "one_or_ordered", "zero"; default "one_or_ordered")
+参数：style ("one", "ordered", "one_or_ordered", "zero"; 默认 "one_or_ordered")
 
-This rule is triggered for ordered lists that do not either start with '1.' or
-do not have a prefix that increases in numerical order (depending on the
-configured style). The less-common pattern of using '0.' for all prefixes is
-also supported.
+当列表项要么没有以‘1.’开始，要么没有使用递增有序数字的前缀（取决于配置的样式）时，触发该规则。
+一种少见的为所有项目使用前缀‘0.’的样式也是被支持的。
 
-Example valid list if the style is configured as 'one':
+如果样式被配置为‘one’时，例子中的列表是有效的：
 
 ```markdown
-1. Do this.
-1. Do that.
-1. Done.
+1. 做这个。
+1. 做那个。
+1. 完成。
 ```
 
-Example valid list if the style is configured as 'ordered':
+如果样式被配置为‘ordered’时，例子中的列表是有效的：
+
+```markdown
+1. 做这个。
+2. 做那个。
+3. 完成。
+```
+
+当样式被配置为‘one_or_ordered’时，上面的两个例子都是有效的。
+
+如果样式被配置为‘zero’时，例子中的列表是有效的：
+
+```markdown
+0. 做这个。
+0. 做那个。
+0. 完成。
+```
+
+在所有样式中，下面的例子都是无效的：
 
 ```markdown
 1. Do this.
-2. Do that.
 3. Done.
 ```
 
-Both examples are valid when the style is configured as 'one_or_ordered'.
-
-Example valid list if the style is configured as 'zero':
-
-```markdown
-0. Do this.
-0. Do that.
-0. Done.
-```
-
-Example invalid list for all styles:
-
-```markdown
-1. Do this.
-3. Done.
-```
-
-This rule supports 0-prefixing ordered list items for uniform indentation:
+本规则支持为0-前缀的有序列表项使用统一的缩进：
 
 ```markdown
 ...
-08. Item
-09. Item
-10. Item
-11. Item
+08. 项目
+09. 项目
+10. 项目
+11. 项目
 ...
 ```
 
@@ -1493,27 +1484,27 @@ be consistent within the document (`consistent`).
 
 <a name="md047"></a>
 
-## MD047 - Files should end with a single newline character
+## MD047 - 文件应当以一个单独的换行符为结束
 
-Tags: blank_lines
+标签：blank_lines
 
-Aliases: single-trailing-newline
+别名：single-trailing-newline
 
-This rule is triggered when there is not a single newline character at the end of a file.
+当文件的结束处没有一个单独的换行符时触发该规则。
 
-Example that triggers the rule:
+触发改规则的例子：
 
 ```markdown
-# Heading
+# 标题
 
-This file ends without a newline.[EOF]
+这个文件没有以换行符为结束。[EOF]
 ```
 
-To fix the violation, add a newline character to the end of the file:
+为文件的最后新增一个换行符以修正该问题：
 
 ```markdown
-# Heading
+# 标题
 
-This file ends with a newline.
+这个文件以一个换行符为结束。
 [EOF]
 ```
