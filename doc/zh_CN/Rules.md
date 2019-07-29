@@ -840,19 +840,17 @@ baz
 
 <a name="md030"></a>
 
-## MD030 - Spaces after list markers
+## MD030 - 列表符号后的空格
 
-Tags: ol, ul, whitespace
+标签：ol, ul, whitespace
 
-Aliases: list-marker-space
+别名：list-marker-space
 
-Parameters: ul_single, ol_single, ul_multi, ol_multi (number; default 1)
+参数：ul_single, ol_single, ul_multi, ol_multi (number; 默认 1)
 
-This rule checks for the number of spaces between a list marker (e.g. '`-`',
-'`*`', '`+`' or '`1.`') and the text of the list item.
+该规则检查列表符号（例如：‘`-`’，‘`*`’，‘`+`’或者‘`1.`’）与列表项文本间的空格数量。
 
-The number of spaces checked for depends on the document style in use, but the
-default is 1 space after any list marker:
+检查的空格数量取决于使用中的文档配置，默认为列表符号后使用1个空格：
 
 ```markdown
 * Foo
@@ -868,17 +866,12 @@ default is 1 space after any list marker:
 1. Baz
 ```
 
-A document style may change the number of spaces after unordered list items
-and ordered list items independently, as well as based on whether the content
-of every item in the list consists of a single paragraph, or multiple
-paragraphs (including sub-lists and code blocks).
+文档配置可以分别独立地修改无序列表和有序列表后的空格数量，
+同样也基于每个列表项的内容是否包括单个或多个段落（包括子列表和代码块）。
 
-For example, the style guide at
-<https://www.cirosantilli.com/markdown-style-guide/#spaces-after-list-marker>
-specifies that 1 space after the list marker should be used if every item in
-the list fits within a single paragraph, but to use 2 or 3 spaces (for ordered
-and unordered lists respectively) if there are multiple paragraphs of content
-inside the list:
+例如，<https://www.cirosantilli.com/markdown-style-guide/#spaces-after-list-marker>
+中的配置指南指出，如果列表中的每个列表项是一个单独的段落，应该为列表符号使用1个空格，
+如果列表中的内容为多个段落，应该使用2个或者3个空格（分别对应有序列表和无序列表）：
 
 ```markdown
 * Foo
@@ -886,7 +879,7 @@ inside the list:
 * Baz
 ```
 
-vs.
+对比
 
 ```markdown
 *   Foo
@@ -896,7 +889,7 @@ vs.
 *   Bar
 ```
 
-or
+或者
 
 ```markdown
 1.  Foo
@@ -906,157 +899,144 @@ or
 1.  Bar
 ```
 
-To fix this, ensure the correct number of spaces are used after list marker
-for your selected document style.
+根据你所选择的文档配置，确保列表符号后使用了正确数量的空格以修正该问题。
 
 <a name="md031"></a>
 
-## MD031 - Fenced code blocks should be surrounded by blank lines
+## MD031 - 代码块应该被空行包围
 
-Tags: code, blank_lines
+标签：code, blank_lines
 
-Aliases: blanks-around-fences
+别名：blanks-around-fences
 
-This rule is triggered when fenced code blocks are either not preceded or not
-followed by a blank line:
-
-````markdown
-Some text
-```
-Code block
-```
-
-```
-Another code block
-```
-Some more text
-````
-
-To fix this, ensure that all fenced code blocks have a blank line both before
-and after (except where the block is at the beginning or end of the document):
+当代码块的前面或者后面没有空行时触发该规则：
 
 ````markdown
-Some text
-
+一些文本
 ```
-Code block
-```
-
-```
-Another code block
+代码块
 ```
 
-Some more text
+```
+另一个代码块
+```
+一些更多的文本
 ````
 
-Rationale: Aside from aesthetic reasons, some parsers, including kramdown, will
-not parse fenced code blocks that don't have blank lines before and after them.
+确保所有的代码块的前后都有空行（除非代码块位于文档的开始或结束位置）以修复该问题：
+
+````markdown
+一些文本
+
+```
+代码块
+```
+
+```
+另一个代码块
+```
+
+一些更多的文本
+````
+
+原理：除了一些审美原因外，一些解析器，包括kramdown，如果代码块的前后没有空行就无法被解析。
 
 <a name="md032"></a>
 
-## MD032 - Lists should be surrounded by blank lines
+## MD032 - 列表项应该被空行包围
 
-Tags: bullet, ul, ol, blank_lines
+标签：bullet, ul, ol, blank_lines
 
-Aliases: blanks-around-lists
+别名：blanks-around-lists
 
-This rule is triggered when lists (of any kind) are either not preceded or not
-followed by a blank line:
+当列表（任何种类）的前面或者后面都没有空行时，触发该规则：
 
 ```markdown
-Some text
-* Some
-* List
+一些文本
+* 一些
+* 列表
 
-1. Some
-2. List
-Some text
+1. 一些
+2. 列表
+一些文本
 ```
 
-To fix this, ensure that all lists have a blank line both before and after
-(except where the block is at the beginning or end of the document):
+确保所有的列表的前后都有空行（除非列表位于文档的开始或者结束位置）以修正给问题：
 
 ```markdown
-Some text
+一些文本
 
-* Some
-* List
+* 一些
+* 列表
 
-1. Some
-2. List
+1. 一些
+2. 列表
 
-Some text
+一些文本
 ```
 
-Rationale: Aside from aesthetic reasons, some parsers, including kramdown, will
-not parse lists that don't have blank lines before and after them.
+原理：除了审美的原因外，一些解析器，包括kramdown，如果列表的前后没有空行时会无法被解析。
 
-Note: List items without hanging indents are a violation of this rule; list
-items with hanging indents are okay:
+注意：列表项没有悬挂缩进是对该规则的违反；列表项应该悬挂缩进：
 
 ```markdown
-* This is
-not okay
+* 这
+不行
 
-* This is
-  okay
+* 这
+  可以
 ```
 
 <a name="md033"></a>
 
-## MD033 - Inline HTML
+## MD033 - 内联HTML
 
-Tags: html
+标签：html
 
-Aliases: no-inline-html
+别名：no-inline-html
 
-Parameters: allowed_elements (array of string; default empty)
+参数allowed_elements (array of string; 默认为空)
 
-This rule is triggered whenever raw HTML is used in a markdown document:
-
-```markdown
-<h1>Inline HTML heading</h1>
-```
-
-To fix this, use 'pure' markdown instead of including raw HTML:
+无论何时在markdown文档中使用原生HTML时触发该规则：
 
 ```markdown
-# Markdown heading
+<h1>内联的HTML标题</h1>
 ```
 
-Rationale: Raw HTML is allowed in markdown, but this rule is included for
-those who want their documents to only include "pure" markdown, or for those
-who are rendering markdown documents in something other than HTML.
+使用纯净的markdown代替包含原生HTML以修正该问题：
 
-Note: To allow specific HTML elements, use the 'allowed_elements' parameter.
+```markdown
+# Markdown标题
+```
+
+原理：markdown允许使用原生HTML，但是该规则适合于那些希望他们的文档中只包含“纯净”的markdown，
+或者将markdown文档转换成非HTML的用户。
+
+注意：使用参数`allowed_elements`来允许使用一些特定的HTML元素。
 
 <a name="md034"></a>
 
-## MD034 - Bare URL used
+## MD034 - 使用裸露的URL
 
-Tags: links, url
+标签：links, url
 
-Aliases: no-bare-urls
+别名：no-bare-urls
 
-This rule is triggered whenever a URL is given that isn't surrounded by angle
-brackets:
-
-```markdown
-For more information, see https://www.example.com/.
-```
-
-To fix this, add angle brackets around the URL:
+任何时候，当给定的URL没有被尖括号包住时，会触发该规则：
 
 ```markdown
-For more information, see <https://www.example.com/>.
+获得更多的信息，参见https://www.example.com/.
 ```
 
-Rationale: Without angle brackets, the URL isn't converted into a link in many
-markdown parsers.
+为URL添加上尖括号以修正该问题：
 
-Note: if you do want a bare URL without it being converted into a link,
-enclose it in a code block, otherwise in some markdown parsers it _will_ be
-converted:
+```markdown
+获得更多的信息，参见<https://www.example.com/>.
+```
+
+原理：很多markdown解析器无法将没有尖括号的URL转换成链接。
+
+注意：如果你希望裸露的URL不会被识别为链接，将其写入代码块中，否则某些解析器 _会_ 将其转化成链接：
 
 ```markdown
 `https://www.example.com`
