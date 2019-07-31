@@ -1044,17 +1044,15 @@ baz
 
 <a name="md035"></a>
 
-## MD035 - Horizontal rule style
+## MD035 - 水平线样式
 
-Tags: hr
+标签：hr
 
-Aliases: hr-style
+别名：hr-style
 
-Parameters: style ("consistent", "---", "***", or other string specifying the
-horizontal rule; default "consistent")
+参数：style ("consistent", "---", "***", 或者指定其他的水平线字符串; 默认 "consistent")
 
-This rule is triggered when inconsistent styles of horizontal rules are used
-in the document:
+当文档中使用的水平线样式不一致时触发该规则：
 
 ```markdown
 ---
@@ -1068,8 +1066,7 @@ in the document:
 ****
 ```
 
-To fix this, ensure any horizontal rules used in the document are consistent,
-or match the given style if the rule is so configured:
+确保文档中使用的任何水平线是一致的，或者匹配规则配置的给定样式以修正该问题：
 
 ```markdown
 ---
@@ -1077,155 +1074,141 @@ or match the given style if the rule is so configured:
 ---
 ```
 
-Note: by default, this rule is configured to just require that all horizontal
-rules in the document are the same, and will trigger if any of the horizontal
-rules are different than the first one encountered in the document. If you
-want to configure the rule to match a specific style, the parameter given to
-the 'style' option is a string containing the exact horizontal rule text that
-is allowed.
+注意：默认情况下，该规则被配置为只要文档中的所有水平线是一致的，如果任何一个水平线与文档中的第一个水平线的样式不同会触发规则。
+如果你想将规则配置为匹配一个特定的样式，将给定的`style`参数选项设置为确定的水平线文本字符串。
 
 <a name="md036"></a>
 
-## MD036 - Emphasis used instead of a heading
+## MD036 - 用强调来代替标题
 
-Tags: headings, headers, emphasis
+标签：headings, headers, emphasis
 
-Aliases: no-emphasis-as-heading, no-emphasis-as-header
+别名：no-emphasis-as-heading, no-emphasis-as-header
 
-Parameters: punctuation (string; default ".,;:!?。，；：！？")
+参数：punctuation (string; 默认 ".,;:!?。，；：！？")
 
-This check looks for instances where emphasized (i.e. bold or italic) text is
-used to separate sections, where a heading should be used instead:
+该规则检查没有使用标题，而是使用强调（即：粗体或者斜体）来分隔段落：
 
 ```markdown
-**My document**
+**我的文档**
 
 Lorem ipsum dolor sit amet...
 
-_Another section_
+_另一个部分_
 
 Consectetur adipiscing elit, sed do eiusmod.
 ```
 
-To fix this, use markdown headings instead of emphasized text to denote
-sections:
+使用markdown标题而不是强调文本来分隔段落以修正该问题：
 
 ```markdown
-# My document
+# 我的文档
 
 Lorem ipsum dolor sit amet...
 
-## Another section
+## 另一个部分
 
 Consectetur adipiscing elit, sed do eiusmod.
 ```
 
-Note: This rule looks for single line paragraphs that consist entirely
-of emphasized text. It won't fire on emphasis used within regular text,
-multi-line emphasized paragraphs, or paragraphs ending in punctuation
-(normal or full-width). Similarly to rule MD026, you can configure what
-characters are recognized as punctuation.
+注意：该规则查找完全由强调文本组成的单行段落。
+不会影响普通文本中的强调、多行强调段落，或者以标点符号（普通符号或者全角符号）结束的段落。
+与规则MD026一样，你可以配置什么字符被识别为标点符号。
 
 <a name="md037"></a>
 
-## MD037 - Spaces inside emphasis markers
+## MD037 - 强调标号中的空格
 
-Tags: whitespace, emphasis
+标签：whitespace, emphasis
 
-Aliases: no-space-in-emphasis
+别名：no-space-in-emphasis
 
-This rule is triggered when emphasis markers (bold, italic) are used, but they
-have spaces between the markers and the text:
-
-```markdown
-Here is some ** bold ** text.
-
-Here is some * italic * text.
-
-Here is some more __ bold __ text.
-
-Here is some more _ italic _ text.
-```
-
-To fix this, remove the spaces around the emphasis markers:
+使用强调标号（粗体，斜体）时，标号与文本间有空格时触发该规则：
 
 ```markdown
-Here is some **bold** text.
+这是一些 ** 粗体 ** 文本。
 
-Here is some *italic* text.
+这是一些 * 斜体 * 文本。
 
-Here is some more __bold__ text.
+这是一些更多的 __ 粗体 __ 文本。
 
-Here is some more _italic_ text.
+这是一些更多的 _ 斜体 _ 文本。
 ```
 
-Rationale: Emphasis is only parsed as such when the asterisks/underscores
-aren't completely surrounded by spaces. This rule attempts to detect where
-they were surrounded by spaces, but it appears that emphasized text was
-intended by the author.
+移除强调标号中的空格以修正该问题：
+
+```markdown
+这是一些 **粗体** 文本。
+
+这是一些 *italic* 文本。
+
+这是一些更多的 __bold__ 文本。
+
+这是一些更多的 _italic_ 文本。
+```
+
+原理：强调只会在星号/下划线没有完全被空格包围时被解析。
+该规则视图检测它们哪里被空格包围，但是看起来强调文本被作者有意设计如此。
 
 <a name="md038"></a>
 
-## MD038 - Spaces inside code span elements
+## MD038 - 代码块元素中的空格
 
-Tags: whitespace, code
+标签：whitespace, code
 
-Aliases: no-space-in-code
+别名：no-space-in-code
 
-This rule is triggered on code span elements that have spaces right inside the
-backticks:
+代码块元素的反引号中有空格时触发该规则：
 
 ```markdown
-` some text `
+` 一些文本 `
 
-`some text `
+`一些文本 `
 
-` some text`
+` 一些文本`
 ```
 
-To fix this, remove the spaces inside the codespan markers:
+移除代码块标号中的空格以修正该问题：
 
 ```markdown
-`some text`
+`一些文本`
 ```
 
-Note: A single leading or trailing space is allowed if used to separate codespan
-markers from an embedded backtick:
+注意：允许使用一个单独的开头或结尾的空格来分隔代码块标号和内嵌反引号：
 
 ```markdown
-`` ` embedded backtick``
+`` ` 内嵌的反引号``
 ```
 
 <a name="md039"></a>
 
-## MD039 - Spaces inside link text
+## MD039 - 链接文本中的空格
 
-Tags: whitespace, links
+标签：whitespace, links
 
-Aliases: no-space-in-links
+别名：no-space-in-links
 
-This rule is triggered on links that have spaces surrounding the link text:
+链接中有空格围绕着链接文本时触发该规则：
 
 ```markdown
-[ a link ](https://www.example.com/)
+[ 一个链接 ](https://www.example.com/)
 ```
 
-To fix this, remove the spaces surrounding the link text:
+移除围绕链接文本的空格以修正该问题：
 
 ```markdown
-[a link](https://www.example.com/)
+[一个链接](https://www.example.com/)
 ```
 
 <a name="md040"></a>
 
-## MD040 - Fenced code blocks should have a language specified
+## MD040 - 代码块应该指明语言
 
-Tags: code, language
+标签：code, language
 
-Aliases: fenced-code-language
+别名：fenced-code-language
 
-This rule is triggered when fenced code blocks are used, but a language isn't
-specified:
+当使用代码块时没有指明语言会触发该规则：
 
 ````markdown
 ```
@@ -1234,7 +1217,7 @@ echo Hello world
 ```
 ````
 
-To fix this, add a language specifier to the code block:
+为代码块添加语言说明符以修正该问题：
 
 ````markdown
 ```bash
@@ -1245,68 +1228,65 @@ echo Hello world
 
 <a name="md041"></a>
 
-## MD041 - First line in file should be a top level heading
+## MD041 - 文件的第一行应该是顶级标题
 
-Tags: headings, headers
+标签：headings, headers
 
-Aliases: first-line-heading, first-line-h1
+别名：first-line-heading, first-line-h1
 
-Parameters: level, front_matter_title (number; default 1, string; default "^\s*title:")
+参数：level, front_matter_title (number; 默认 1, string; 默认 "^\s*title:")
 
-This rule is intended to ensure documents have a title and is triggered when
-the first line in the file isn't a top level (h1) heading:
-
-```markdown
-This is a file without a heading
-```
-
-To fix this, add a top level heading to the beginning of the file:
+该规则意图确保文档有一个标题，并当文件的第一行不是顶级（h1）标题时被触发：
 
 ```markdown
-# File with heading
-
-This is a file with a top level heading
+这是一个没有标题的文件
 ```
 
-Note: The `level` parameter can be used to change the top level (ex: to h2) in cases
-where an h1 is added externally.
+在文件的开头添加一个顶级标题修正该问题：
 
-If [YAML](https://en.wikipedia.org/wiki/YAML) front matter is present and contains a
-`title` property (commonly used with blog posts), this rule will not report a
-violation. To use a different property name in front matter, specify the text
-of a regular expression via the `front_matter_title` parameter. To disable the
-use of front matter by this rule, specify `""` for `front_matter_title`.
+```markdown
+# 有标题的文件
+
+这是一个有顶级标题的文件
+```
+
+注意：参数`level`可以用来修改顶级标题（例如：改为h2），以防止h1在外部被添加。
+
+如果[YAML](https://en.wikipedia.org/wiki/YAML)前面包含一个`title`属性（通常使用在博客中）而面临问题，
+这条规则会将其视为顶级标题并会对其后的顶级标题报出警告。
+在前面使用不同属性名，使用属性`front_matter_title`修改正则表达式文本。
+将`front_matter_title`修改为`""`以关闭该规则。
 
 <a name="md042"></a>
 
-## MD042 - No empty links
+## MD042 - 禁止空白链接
 
-Tags: links
+标签：links
 
-Aliases: no-empty-links
+别名：no-empty-links
 
-This rule is triggered when an empty link is encountered:
+当遇到一个空白链接时触发该规则：
 
 ```markdown
-[an empty link]()
+[一个空白链接]()
 ```
 
-To fix the violation, provide a destination for the link:
+为链接提供一个目标地址修正该问题：
 
 ```markdown
-[a valid link](https://example.com/)
+[有效的链接](https://example.com/)
 ```
 
-Empty fragments will trigger this rule:
+空白片段会触发该规则：
 
 ```markdown
-[an empty fragment](#)
+[空白片段](#)
 ```
 
-But non-empty fragments will not:
+但是非空片段不会触发规则：
 
 ```markdown
-[a valid fragment](#fragment)
+[有效的片段](#fragment)
 ```
 
 <a name="md043"></a>
