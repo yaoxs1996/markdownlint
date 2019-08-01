@@ -7,9 +7,9 @@
 
 ## MD001 - 标题应当逐级使用
 
-标签：标题
+标签：headings, headers
 
-别名：多级标题
+别名：heading-increment, header-increment
 
 当你在markdown文档中越级使用标题会触发本条规则，实例如下：
 
@@ -41,9 +41,9 @@
 
 ## MD002 - 第一个标题应当是一级标题
 
-标签：标题
+标签：headings, headerd
 
-别名：首标题-h1
+别名：first-headings-h1, first-header-h1
 
 参数: level (number; 默认为1)
 
@@ -72,12 +72,12 @@
 
 ## MD003 - 标题样式
 
-标签：标题
+标签：headings, headers
 
-别名：标题样式
+别名：heading-style, header-style
 
 参数：style ("consistent", "atx", "atx_closed", "setext",
-"setext_with_atx", "setext_with_atx_closed"; default "consistent")
+"setext_with_atx", "setext_with_atx_closed"; 默认 "consistent")
 
 当在同一个文档中，使用不同的标题样式（atx，setext，以及‘closed’ atx）会触发该规则：
 
@@ -116,11 +116,11 @@ Setext样式的H2标题
 
 ## MD004 - 无序列表样式
 
-标签：项目符号，无序列表
+标签：bullet, ul
 
 别名：ul-style
 
-参数：style ("consistent", "asterisk", "plus", "dash", "sublist"; default
+参数：style ("consistent", "asterisk", "plus", "dash", "sublist"; 默认
 "consistent")
 
 在文档中，当无序列表项目使用的符号与配置的无序列表样式不符时触发该条规则：
@@ -156,9 +156,9 @@ Setext样式的H2标题
 
 ## MD005 - 同级列表项中的不一致缩进
 
-标签：列表项目，无序列表，缩进
+标签：bullet, ul, indentation
 
-别名：列表缩进
+别名：list-indent
 
 当列表项被解析为同一级，但没有使用一致的缩进时，触发该规则：
 
@@ -204,9 +204,9 @@ Setext样式的H2标题
 
 ## MD006 - 考虑将无序列表的起始位置放在行首
 
-标签：着重号，无序列表，缩进
+标签：bullet, ul, indentation
 
-别名：无序列表起始于左侧
+别名：ul-start-left
 
 当顶级列表没有以行首为开始时触发该规则：
 
@@ -241,11 +241,11 @@ Setext样式的H2标题
 
 ## MD007 - 无序列表缩进
 
-标签：着重号，无序列表，缩进
+标签：bullet, ul, indentation
 
 别名：ul-indent
 
-参数：indent (number; 默认为2)
+参数：indent (number; 默认 2)
 
 当列表项没有按照配置的空格数（默认为2）进行缩进时触发该规则。
 
@@ -275,11 +275,11 @@ Setext样式的H2标题
 
 ## MD009 - 后续空格
 
-标签：空格
+标签：whitespace
 
-别名：禁止后续空格
+别名：no-trailing-spaces
 
-参数：br_spaces, list_item_empty_lines (number; 默认为2, boolean; 默认为false)
+参数：br_spaces, list_item_empty_lines (number; 默认 2, boolean; 默认 false)
 
 当任何行以一场的空格结束时，触发该规则。从行尾删除后续的空格以修复该问题。
 
@@ -299,11 +299,11 @@ Setext样式的H2标题
 
 ## MD010 - 硬tabs
 
-标签：空格，硬tabs
+标签：whitespace, hard_tab
 
-别名：禁止硬tabs
+别名：no-hard-tabs
 
-参数：code_blocks (boolean; 默认为true)
+参数：code_blocks (boolean; 默认 true)
 
 当任一行使用硬tabs字符而不是空格进行缩进时，会触发该规则。使用空格来替换硬tabs字符以修复该问题。
 
@@ -329,9 +329,9 @@ Setext样式的H2标题
 
 ## MD011 - 链接语法颠倒
 
-标签：链接
+标签：links
 
-别名：禁止颠倒链接
+别名：no-reversed-links
 
 在文本中使用了链接，但是语法看起来被颠倒了（`[]`和`()`的顺序颠倒了），就会触发这条规则：
 
@@ -355,11 +355,11 @@ For (example)[^1]
 
 ## MD012 - 多个连续空白行
 
-标签：空格，空白行
+标签：whitespace, blank_lines
 
-别名：禁止多个空白行
+别名：no-multiple-blanks
 
-参数：maximum (number; 默认1)
+参数：maximum (number; 默认 1)
 
 当文档中有连续的多个空白行会触发这个规则：
 
@@ -1291,21 +1291,19 @@ echo Hello world
 
 <a name="md043"></a>
 
-## MD043 - Required heading structure
+## MD043 - 必需的标题结构
 
-Tags: headings, headers
+标签：headings, headers
 
-Aliases: required-headings, required-headers
+别名：required-headings, required-headers
 
-Parameters: headings, headers (array of string; default `null` for disabled)
+参数：headings, headers (array of string; 默认 `null` 关闭)
 
-> If `headings` is not provided, `headers` (deprecated) will be used.
+> 如果没有提供`headings`，将使用`headers`（已弃用）。
 
-This rule is triggered when the headings in a file do not match the array of
-headings passed to the rule. It can be used to enforce a standard heading
-structure for a set of files.
+当文件中的标题没有匹配规则中的标题数组时触发该规则。该规则可以为一组文件强制使用一个标准的标题结构。
 
-To require exactly the following structure:
+要准确地要求下列的结构：
 
 ```markdown
 # Head
@@ -1313,7 +1311,7 @@ To require exactly the following structure:
 ### Detail
 ```
 
-Set the `headings` parameter to:
+将参数`headings`设置为：
 
 ```json
 [
@@ -1323,7 +1321,7 @@ Set the `headings` parameter to:
 ]
 ```
 
-To allow optional headings as with the following structure:
+要允许和下列结构一样的可选标题：
 
 ```markdown
 # Head
@@ -1333,8 +1331,7 @@ To allow optional headings as with the following structure:
 ### Notes (optional)
 ```
 
-Use the special value `"*"` meaning "one or more unspecified headings" and set
-the `headings` parameter to:
+使用特殊值`"*"`意味着“一个或多个未指明的标题”，并将参数`headings`设置为：
 
 ```json
 [
@@ -1346,29 +1343,24 @@ the `headings` parameter to:
 ]
 ```
 
-When an error is detected, this rule outputs the line number of the first
-problematic heading (otherwise, it outputs the last line number of the file).
+当检测到错误时，该规则输出第一个有问题标题的行号（否则会输出文件中的最后一个问题标题的行号）。
 
-Note that while the `headings` parameter uses the "## Text" ATX heading style for
-simplicity, a file may use any supported heading style.
+注意，为了方便起见，尽管参数`headings`使用“## Text”这样的ATX样式的标题，但是文件可以使用任何支持的标题样式。
 
 <a name="md044"></a>
 
-## MD044 - Proper names should have the correct capitalization
+## MD044 - 恰当的名字应该有正确的大写
 
-Tags: spelling
+标签：spelling
 
-Aliases: proper-names
+别名：proper-names
 
-Parameters: names, code_blocks (string array; default `null`, boolean; default `true`)
+参数：names, code_blocks (string array; 默认 `null`, boolean; 默认 `true`)
 
-This rule is triggered when any of the strings in the `names` array do not have
-the specified capitalization. It can be used to enforce a standard letter case
-for the names of projects and products.
+当数组`names`中的任何字符串没有特定的大小写时触发该规则。该规则可以用来强制项目和产品名称的标准写法。
 
-For example, the language "JavaScript" is usually written with both the 'J' and
-'S' capitalized - though sometimes the 's' or 'j' appear in lower-case. To enforce
-the proper capitalization, specify the desired letter case in the `names` array:
+例如，编程语言“JavaScript”经常将‘J’与‘S’大写——尽管有时也会小写‘j’和‘s’。
+为了强制正确的大小写，把期望的写法列入`names`数组中。
 
 ```json
 [
@@ -1376,71 +1368,67 @@ the proper capitalization, specify the desired letter case in the `names` array:
 ]
 ```
 
-Set the `code_blocks` parameter to `false` to disable this rule for code blocks.
+将参数`code_blocks`设置为`false`为代码块关闭该规则。
 
 <a name="md045"></a>
 
-## MD045 - Images should have alternate text (alt text)
+## MD045 - 图像应该有替换文本（alt text）
 
-Tags: accessibility, images
+标签：accessibility, images
 
-Aliases: no-alt-text
+别名：no-alt-text
 
-This rule is triggered when an image is missing alternate text (alt text) information.
-Alternate text is important for accessibility, describing the content of an image for
-people who may not be able to see it.
+当图片缺失替换文本（alt text）信息时触发该规则。对于可访问性，替代文本非常重要，为无法看到图片的人提供图像内容的描述。
 
-Alternate text is commonly specified inline as:
+替换文本通常如下的内联指定：
 
 ```markdown
-![Alternate text](image.jpg)
+![替换文本](image.jpg)
 ```
 
-Or with reference syntax as:
+或者参考如下的语法：
 
 ```markdown
-![Alternate text][ref]
+![替换文本][ref]
 
 ...
 
-[ref]: image.jpg "Optional title"
+[ref]: image.jpg "可选标题"
 ```
 
-Guidance for writing alternate text is available from the [W3C](https://www.w3.org/WAI/alt/),
-[Wikipedia](https://en.wikipedia.org/wiki/Alt_attribute), and
-[other locations](https://www.phase2technology.com/blog/no-more-excuses-definitive-guide-alt-text-field).
+书写替换文本的指南可以从[W3C](https://www.w3.org/WAI/alt/)，
+[Wikipedia](https://en.wikipedia.org/wiki/Alt_attribute)以及
+[其他站点](https://www.phase2technology.com/blog/no-more-excuses-definitive-guide-alt-text-field)获得。
 
 <a name="md046"></a>
 
-## MD046 - Code block style
+## MD046 - 代码块样式
 
-Tags: code
+标签：code
 
-Aliases: code-block-style
+别名：code-block-style
 
-Parameters: style ("consistent", "fenced", "indented"; default "consistent")
+参数：style ("consistent", "fenced", "indented"; 默认 "consistent")
 
-This rule is triggered when unwanted or different code block styles are used in
-the same document.
+当同一个文档内使用了多余的或者不同的代码块样式时触发该规则。
 
-In the default configuration this rule reports a violation for the following document:
+在默认的配置下，该规则会为下列的文档报告一个错误：
 
-    Some text.
+    一些文本。
 
-        # Indented code
+        # 缩进的代码
 
-    More text.
+    更多的文本。
 
     ```ruby
-    # Fenced code
+    # 围着的代码
     ```
 
-    More text.
+    更多的代码。
 
-To fix violations of this rule, use a consistent style (either indenting or code fences).
+使用一致的样式（或者缩进或者代码栅栏）以修正违反该规则的问题。
 
-The specified style can be specific (`fenced`, `indented`) or simply require that usage
-be consistent within the document (`consistent`).
+样式可以被指定为（`fenced`，`indented`）或者简单地要求文档内使用一致的样式（`consistent`）。
 
 <a name="md047"></a>
 
